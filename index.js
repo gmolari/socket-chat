@@ -1,10 +1,19 @@
 import { router as userRoutes } from "./routes/userRoutes.js"
 import { router as chatRoutes } from "./routes/chatRoutes.js"
+import SocketConnection from "./socket/SocketConnection.js"
+import http from 'http'
 import express from "express"
 import cors from 'cors'
+import { Server } from "socket.io"
 
 //instantiating the app
 const app = express()
+
+//creating the server to socket
+const server = http.createServer(app)
+
+//instantiating the io to chat
+const io = new Server(server)
 
 //using cors
 app.use(cors())
@@ -23,7 +32,9 @@ app.use(express.Router())
 app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
 
+io.on('connection', SocketConnection);
+
 //starting app on port 3000
-app.listen(3000, () => {
+server.listen(3000, () => {
     console.log(`Server started at: http://localhost:3000`)
 })
