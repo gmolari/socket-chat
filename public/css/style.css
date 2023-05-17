@@ -5,11 +5,6 @@
     font-family: sans-serif
 }
 
-body {
-    width: 100vw;
-    height: 100vh;
-}
-
 h2 {
     margin: 1rem 0 0;
     text-align: center;
@@ -52,12 +47,14 @@ h2 {
     min-width: 500px;
     min-height: 50px;
     border: none;
+    outline: none;
 }
 
 .container-chat form button {
     border: none;
     padding: 1rem;
     justify-self: flex-end;
+    outline: none;
 }
 
 .container-chat form button:hover {

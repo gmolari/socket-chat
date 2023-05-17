@@ -14,10 +14,14 @@ function controllerOn(socket) {
     }
 }
 
-async function controllerEmit() {
+function controllerEmit(socket) {
+
+    function sendMessage(data){
+        socket.emit('send-message', data)
+    }
 
     return {
-
+        sendMessage
     }
 }
 

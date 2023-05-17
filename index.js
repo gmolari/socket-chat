@@ -6,6 +6,9 @@ import express from "express"
 import cors from 'cors'
 import { Server } from "socket.io"
 
+const users = {}
+const messages = {}
+
 //instantiating the app
 const app = express()
 
@@ -32,6 +35,7 @@ app.use(express.Router())
 app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
 
+//connecting socket.io
 io.on('connection', SocketConnection);
 
 //starting app on port 3000

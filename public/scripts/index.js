@@ -1,11 +1,15 @@
-import socketManager from "./socket/socketManager.js"
+import { controllerEmit, controllerOn } from "./controllers/socketController.js"
 
 const mainForm = document.querySelector('form')
 const socket = io()
 
-socketManager(socket)
+socket.on('connect', controllerOn(socket).connect)
+socket.on('disconnect', controllerOn(socket).disconnect)
 
-// mainForm.addEventListener('submit', )
+mainForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    controllerEmit(socket).sendMessage({teste:'teste'})
+})
 
 // async (e) => {
 //     e.preventDefault()

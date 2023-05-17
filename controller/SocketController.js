@@ -1,11 +1,16 @@
 
 
-export default function SocketController(){
+export default function SocketController(socket){
     function disconnect(){
-        console.log('a use has disconnected')
+        console.log(`User ${socket.id} has disconnected`)
+    }
+
+    function sendMessage(data){
+        console.log(data)
     }
 
     return {
-        disconnect
+        disconnect,
+        sendMessage
     }
 }
