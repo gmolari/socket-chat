@@ -9,8 +9,13 @@ export default function SocketController(socket){
         console.log(data)
     }
 
+    function init(data){
+        socket.emit('init', data)
+    }
+
     return {
         disconnect,
-        sendMessage
+        sendMessage,
+        init
     }
 }

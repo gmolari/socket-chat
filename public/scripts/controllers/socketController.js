@@ -8,9 +8,14 @@ function controllerOn(socket) {
         console.log(`USER ${socket.id} HAS DISCONNECTED`)
     }
 
+    function init(){
+        console.log('Inited')
+    }
+
     return {
         connect,
-        disconnect
+        disconnect,
+        init
     }
 }
 
