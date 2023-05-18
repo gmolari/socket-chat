@@ -12,7 +12,7 @@ export default function SocketController(messages, users){
             if (messages[id]) messages[id].push({date, message})
             else messages[id] = [{date, message}]
             
-            socket.emit('receive-message', {id, date, message})
+            socket.emit('send-msg-sv-to-cl', {id, date, message})
 
             console.log('messages:',messages)
         }
@@ -27,7 +27,7 @@ export default function SocketController(messages, users){
         init()
 
         socket.on('disconnect', disconnect)
-        socket.on('send-message', sendMessage)
+        socket.on('send-msg-cl-to-sv', sendMessage)
 
         return {
             disconnect,

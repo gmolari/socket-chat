@@ -5,11 +5,11 @@ function controllerOn(socket) {
     }
 
     function disconnect(){
-        console.log(`USER ${socket.id} HAS DISCONNECTED`)
+        // console.log(`USER ${socket.id} HAS DISCONNECTED`)
     }
 
     function init(data){
-        console.log(data)
+        // console.log(data)
     }
 
     function receiveMessage(data){ 
@@ -27,7 +27,7 @@ function controllerOn(socket) {
 function controllerEmit(socket) {
 
     function sendMessage(data){
-        socket.emit('send-message', data)
+        socket.emit('send-msg-cl-to-sv', data)
     }
 
     return {

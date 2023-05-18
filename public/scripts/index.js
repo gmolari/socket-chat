@@ -7,7 +7,7 @@ const socket = io()
 socket.on('connect', controllerOn(socket).connect)
 socket.on('disconnect', controllerOn(socket).disconnect)
 socket.on('init', controllerOn(socket).init)
-socket.on('receive-message', controllerOn(socket).receiveMessage)
+socket.on('send-msg-sv-to-cl', controllerOn(socket).receiveMessage)
 
 mainForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -37,6 +37,7 @@ mainForm.addEventListener('submit', (e) => {
     }
 
     controllerEmit(socket).sendMessage(dataToSend)
+    inputMessage.value = ''
 })
 
 // async (e) => {
