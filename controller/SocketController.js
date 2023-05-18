@@ -1,21 +1,34 @@
+export default function SocketController(messages, users){
+    function socketConnection(socket) {
+        function disconnect(){
+            console.log(`User ${socket.id} has disconnected`)
+        }
+    
+        function sendMessage(data){
+            const {id, date, message} = data
+            if (messages[id]) messages[id].push({date, message})
+            else messages[id] = [{date, message}]
+            console.log('messages:',messages)
+        }
+    
+        function init(){
+            socket.emit('init', messages)
+        }
 
+        console.log(`User ${socket.id} has connected`)
+        init()
 
-export default function SocketController(socket){
-    function disconnect(){
-        console.log(`User ${socket.id} has disconnected`)
-    }
+        socket.on('disconnect', disconnect)
+        socket.on('send-message', sendMessage)
 
-    function sendMessage(data){
-        console.log(data)
-    }
-
-    function init(data){
-        socket.emit('init', data)
+        return {
+            disconnect,
+            sendMessage,
+            init
+        }
     }
 
     return {
-        disconnect,
-        sendMessage,
-        init
+        socketConnection,
     }
 }

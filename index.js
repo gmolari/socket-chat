@@ -1,13 +1,10 @@
 import { router as userRoutes } from "./routes/userRoutes.js"
 import { router as chatRoutes } from "./routes/chatRoutes.js"
-import SocketConnection from "./socket/SocketConnection.js"
+import SocketController from './controller/SocketController.js'
 import http from 'http'
 import express from "express"
 import cors from 'cors'
 import { Server } from "socket.io"
-
-const users = {}
-const messages = {}
 
 //instantiating the app
 const app = express()
@@ -35,10 +32,13 @@ app.use(express.Router())
 app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
 
+const users = []
+const messages = {}
+
 //connecting socket.io
-io.on('connection', SocketConnection);
+io.on('connection', SocketController(messages, users).socketConnection);
 
 //starting app on port 3000
 server.listen(3000, () => {
-    console.log(`Server started at: http://localhost:3000`)
+    console.log(`Server started at: http://localhost:3000/chat`)
 })

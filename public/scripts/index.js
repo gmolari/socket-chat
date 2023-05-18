@@ -10,9 +10,20 @@ socket.on('init', controllerOn(socket).init)
 
 mainForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    const myDate = new Date()
+    const dayNow = myDate.getDate()
+    const monthNow = (date) => {
+        let month = parseInt(date.getMonth())+1
+        if (month < 10) month = `0${month}` 
+        return month
+    }
+    const yearNow = myDate.getFullYear()
+    const dateNow = `${dayNow}/${monthNow(myDate)}/${yearNow}`
+    console.log(dateNow)
     const dataToSend = {
         id: socket.id,
-        message: inputMessage.value
+        message: inputMessage.value,
+        date: dateNow
     }
     controllerEmit(socket).sendMessage(dataToSend)
 })
