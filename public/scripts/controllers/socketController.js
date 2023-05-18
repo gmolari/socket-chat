@@ -12,10 +12,15 @@ function controllerOn(socket) {
         console.log(data)
     }
 
+    function receiveMessage(data){ 
+        console.log('Receiving message')
+    }
+
     return {
         connect,
         disconnect,
-        init
+        init,
+        receiveMessage
     }
 }
 
