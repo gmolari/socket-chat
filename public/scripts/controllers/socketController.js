@@ -9,15 +9,24 @@ function controllerOn(socket, messages, chatElement, elementMessage) {
     }
 
     function init(data){
+        console.log(data.messages)
         updateMessages(data.messages)
     }
 
     function updateMessages(data){
+        elementMessage = ''
         for(const i in data){
-            const message = data[i].messages.message
+            for(const j in data[i].messages){
+                messages.push(data[i].messages[j])
+            }
+        }
+        
+        for(const i in messages){
+            const message = messages[i].message 
             elementMessage += `<div class="container-new-message"> <div class="thisMessage"> ${message} </div> </div>`
         }
-        console.log(chatElement)
+        // 
+        console.log(messages)
         chatElement.innerHTML = elementMessage
     }
 

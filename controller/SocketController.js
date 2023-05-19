@@ -19,7 +19,7 @@ export default function SocketController(messages, users){
             // if (messages[id]) messages[id].push({date, message})
             // else messages[id] = [{date, message}]
             
-            socket.emit('send-msg-sv-to-cl', [{id, nick: '', messages: {date, message}}])
+            socket.emit('send-msg-sv-to-cl', [{id, nick: '', messages: [{date, message}]}])
 
         }
     
