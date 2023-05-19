@@ -33,7 +33,7 @@ app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
 
 const users = []
-const messages = {}
+const messages = []
 
 //connecting socket.io
 io.on('connection', SocketController(messages, users).socketConnection);

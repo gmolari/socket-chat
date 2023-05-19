@@ -1,5 +1,5 @@
 
-function controllerOn(socket) {
+function controllerOn(socket, messages, chatElement, elementMessage) {
     function connect(){
         console.log(`USER ${socket.id} HAS CONNECTED`)
     }
@@ -9,24 +9,30 @@ function controllerOn(socket) {
     }
 
     function init(data){
-        // console.log(data)
+        updateMessages(data.messages)
     }
 
-    function receiveMessage(data){ 
-        console.log('Receiving message')
+    function updateMessages(data){
+        for(const i in data){
+            const message = data[i].messages.message
+            elementMessage += `<div class="container-new-message"> <div class="thisMessage"> ${message} </div> </div>`
+        }
+        console.log(chatElement)
+        chatElement.innerHTML = elementMessage
     }
 
     return {
+        updateMessages,
         connect,
         disconnect,
         init,
-        receiveMessage
     }
 }
 
 function controllerEmit(socket) {
 
     function sendMessage(data){
+        console.log('enviando mensagem')
         socket.emit('send-msg-cl-to-sv', data)
     }
 

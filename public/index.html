@@ -12,13 +12,16 @@
 
     <div class="container">
         <div class="container-chat">
-            <div class="messages">
+            <div class="messages column">
                 <div class="container-title">Mensagens</div>
+                <div class="container-messages" id="container-messages"></div>
             </div>
             <form action="/api/chat" method="post">
                 <input autocomplete="off" type="text" name="message" id="message" placeholder="Insert your message..."></input>
                 <button type="submit">Enviar</button>
             </form>
+            <input id="nick" name="nick" placeholder="Insira seu nick" type="text">
+            <button id="btnNick">Atualizar nome</button>
         </div>
     </div>
     <script type="module" src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
